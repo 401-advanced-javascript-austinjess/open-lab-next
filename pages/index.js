@@ -12,44 +12,53 @@ const URL =
 
 class Index extends React.Component {
   state = {
-    games: this.props.games
+    games: this.props.games,
   };
 
   static async getInitialProps() {
     const res = await axios.get(URL, {
       auth: {
         username: USERNAME,
-        password: PASSWORD
-      }
+        password: PASSWORD,
+      },
     });
 
     return {
-      games: res.data.dailygameschedule.gameentry.map((game) => [
+      games: res.data.dailygameschedule.gameentry.map(game => [
         game.homeTeam,
-        game.awayTeam
-      ])
+        game.awayTeam,
+      ]),
     };
   }
 
   render() {
-    console.log('GAMES', this.state.games);
     return (
       <>
         <form>
-          {this.state.games.map((game, idx) => (
-            <div key={idx}>
-              <img
-                src={`static/team-logos/${game[0].Abbreviation.toLowerCase()}.png`}
-              />
-              <label>{game[0].Name}</label>
-              <input name="match" type="radio" value={game[0].Name} />
-              <img
-                src={`static/team-logos/${game[1].Abbreviation.toLowerCase()}.png`}
-              />
-              <label>{game[1].Name}</label>
-              <input name="match" type="radio" value={game[1].Name} />
-            </div>
-          ))}
+          <section className="game-inputs">
+            {this.state.games.map((game, idx) => (
+              <div className="matchup" key={idx}>
+                <div className="team">
+                  <div className="team-info">
+                    <img
+                      src={`static/team-logos/${game[0].Abbreviation.toLowerCase()}.png`}
+                    />
+                    <label>{game[0].Name}</label>
+                  </div>
+                  <input name="match" type="radio" value={game[0].Name} />
+                </div>
+                <div className="team">
+                  <div className="team-info">
+                    <img
+                      src={`static/team-logos/${game[1].Abbreviation.toLowerCase()}.png`}
+                    />
+                    <label>{game[1].Name}</label>
+                  </div>
+                  <input name="match" type="radio" value={game[1].Name} />
+                </div>
+              </div>
+            ))}
+          </section>
           <input type="submit" />
         </form>
       </>

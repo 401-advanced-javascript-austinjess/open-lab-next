@@ -1320,8 +1320,14 @@ function (_React$Component) {
   Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_3__["default"])(Index, [{
     key: "render",
     value: function render() {
-      console.log('GAMES', this.state.games);
       return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_9___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("form", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 37
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("section", {
+        className: "game-inputs",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 38
@@ -1329,62 +1335,91 @@ function (_React$Component) {
         __self: this
       }, this.state.games.map(function (game, idx) {
         return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
+          className: "matchup",
           key: idx,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 40
           },
           __self: this
-        }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("img", {
-          src: "static/team-logos/".concat(game[0].Abbreviation.toLowerCase(), ".png"),
+        }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
+          className: "team",
           __source: {
             fileName: _jsxFileName,
             lineNumber: 41
           },
           __self: this
+        }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
+          className: "team-info",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 42
+          },
+          __self: this
+        }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("img", {
+          src: "static/team-logos/".concat(game[0].Abbreviation.toLowerCase(), ".png"),
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 43
+          },
+          __self: this
         }), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("label", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 44
-          },
-          __self: this
-        }, game[0].Name), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("input", {
-          name: "match",
-          type: "radio",
-          value: game[0].Name,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 45
-          },
-          __self: this
-        }), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("img", {
-          src: "static/team-logos/".concat(game[1].Abbreviation.toLowerCase(), ".png"),
           __source: {
             fileName: _jsxFileName,
             lineNumber: 46
           },
           __self: this
-        }), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("label", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 49
-          },
-          __self: this
-        }, game[1].Name), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("input", {
+        }, game[0].Name)), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("input", {
           name: "match",
           type: "radio",
-          value: game[1].Name,
+          value: game[0].Name,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 48
+          },
+          __self: this
+        })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
+          className: "team",
           __source: {
             fileName: _jsxFileName,
             lineNumber: 50
           },
           __self: this
-        }));
-      }), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("input", {
+        }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
+          className: "team-info",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 51
+          },
+          __self: this
+        }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("img", {
+          src: "static/team-logos/".concat(game[1].Abbreviation.toLowerCase(), ".png"),
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 52
+          },
+          __self: this
+        }), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("label", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 55
+          },
+          __self: this
+        }, game[1].Name)), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("input", {
+          name: "match",
+          type: "radio",
+          value: game[1].Name,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 57
+          },
+          __self: this
+        })));
+      })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("input", {
         type: "submit",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 53
+          lineNumber: 62
         },
         __self: this
       })));
