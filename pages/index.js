@@ -2,7 +2,6 @@ import React from 'react';
 
 import Link from 'next/link';
 import axios from 'axios';
-let dog = 'hello';
 
 const USERNAME = '4498f76b-695d-4832-a187-2a0f81';
 const PASSWORD = '*7P%Wo9%hwUl';
@@ -11,8 +10,7 @@ const URL =
 
 class Index extends React.Component {
   state = {
-    games: this.props.games,
-    homeTeams: this.props.home
+    games: this.props.games
   };
 
   static async getInitialProps() {
