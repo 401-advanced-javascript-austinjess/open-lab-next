@@ -3,8 +3,6 @@ import React from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 
-// import '../styles/base.scss';
-
 const USERNAME = '4498f76b-695d-4832-a187-2a0f81';
 const PASSWORD = '*7P%Wo9%hwUl';
 const URL =
@@ -17,10 +15,7 @@ class GameForm extends React.Component {
   };
 
   handleSubmit = (e) => {
-    // e.preventDefault();
-    // console.log(e.currentTarget);
-    // console.log(e.target.elements);
-    // console.log(Array.from(e.target.elements).map(el => [el.dataset.gameId, el.value]),);
+    localStorage.setItem('userPicks', JSON.stringify(this.state.userPicks));
   };
 
   handleInput = (e) => {
@@ -47,7 +42,6 @@ class GameForm extends React.Component {
       },
     });
 
-    // console.log(res.data.dailygameschedule.gameentry);
     return {
       games: res.data.dailygameschedule.gameentry,
     };
