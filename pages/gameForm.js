@@ -2,11 +2,13 @@ import React from 'react';
 
 import Link from 'next/link';
 import axios from 'axios';
+import moment from 'moment';
+
+const date = moment().format('YYYYMMDD');
 
 const USERNAME = '4498f76b-695d-4832-a187-2a0f81';
 const PASSWORD = '*7P%Wo9%hwUl';
-const URL =
-  'https://api.mysportsfeeds.com/v1.0/pull/mlb/current/daily_game_schedule.json?fordate=20190718';
+const URL = `https://api.mysportsfeeds.com/v1.0/pull/mlb/current/daily_game_schedule.json?fordate=${date}`;
 
 class GameForm extends React.Component {
   state = {
@@ -48,6 +50,7 @@ class GameForm extends React.Component {
   }
 
   render() {
+    console.log(date);
     return (
       <>
         <h2>Today's Games</h2>
