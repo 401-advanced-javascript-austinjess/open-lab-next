@@ -11,6 +11,7 @@ const URL =
 
 class Index extends React.Component {
   state = {
+    games: this.props.games,
     homeTeams: this.props.home
   };
 
@@ -23,27 +24,27 @@ class Index extends React.Component {
     });
 
     return {
-      data: JSON.stringify(res.data.dailygameschedule.gameentry),
-      away: res.data.dailygameschedule.gameentry.map((game) =>
-        JSON.stringify(game.awayTeam)
-      ),
-      home: res.data.dailygameschedule.gameentry.map((game) => game.homeTeam)
+      games: res.data.dailygameschedule.gameentry.map((game) => [
+        game.homeTeam,
+        game.awayTeam
+      ])
     };
   }
 
   render() {
-    console.log({ homeTeams: this.state.homeTeams });
     return (
       <>
-        <pre>{this.props.data}</pre>
-
-        <ul>
-          {this.state.homeTeams.map((game, idx) => (
-            <li key={idx}>
-              <p>{game.City}</p>
-            </li>
+        <form>
+          {this.state.games.map((game, idx) => (
+            <div key={idx}>
+              <label>{game[0].Name}</label>
+              <input name="match" type="radio" value={game[0].Name} />
+              <label>{game[1].Name}</label>
+              <input name="match" type="radio" value={game[1].Name} />
+            </div>
           ))}
-        </ul>
+          <input type="submit" />
+        </form>
       </>
     );
   }
