@@ -13,6 +13,13 @@ const Index = () => {
       <Link href="/about">
         <a>About</a>
       </Link>
+      <style jsx>
+        {`
+          body {
+            text-align: center;
+          }
+        `}
+      </style>
     </>
   );
 };

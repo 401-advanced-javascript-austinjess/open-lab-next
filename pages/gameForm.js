@@ -13,11 +13,30 @@ const URL =
 class GameForm extends React.Component {
   state = {
     games: this.props.games,
+    userPicks: [],
   };
 
   handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(e.target.value);
+    // e.preventDefault();
+    // console.log(e.currentTarget);
+    // console.log(e.target.elements);
+    // console.log(Array.from(e.target.elements).map(el => [el.dataset.gameId, el.value]),);
+  };
+
+  handleInput = (e) => {
+    const {
+      value: team,
+      dataset: { gameId },
+    } = e.target;
+
+    this.setState((state) => {
+      return {
+        userPicks: {
+          ...state.userPicks,
+          [gameId]: team,
+        },
+      };
+    });
   };
 
   static async getInitialProps() {
@@ -28,45 +47,50 @@ class GameForm extends React.Component {
       },
     });
 
+    // console.log(res.data.dailygameschedule.gameentry);
     return {
-      games: res.data.dailygameschedule.gameentry.map(game => [
-        game.homeTeam,
-        game.awayTeam,
-      ]),
+      games: res.data.dailygameschedule.gameentry,
     };
   }
 
   render() {
     return (
       <>
-        <form onSubmit={this.handleSubmit}>
+        <h2>Today's Games</h2>
+        <form action="/results" onSubmit={this.handleSubmit}>
           <section className="game-inputs">
-            {this.state.games.map((game, idx) => (
+            {this.state.games.map(({ id, homeTeam, awayTeam }, idx) => (
               <div className="matchup" key={idx}>
                 <div className="team">
                   <div className="team-info">
                     <img
-                      src={`static/team-logos/${game[0].Abbreviation.toLowerCase()}.png`}
+                      src={`static/team-logos/${homeTeam.Abbreviation.toLowerCase()}.png`}
                     />
-                    <label>{game[0].Name}</label>
+                    <label>{homeTeam.Name}</label>
                   </div>
                   <input
-                    name={`match${game[0].ID}`}
+                    name={`match${id}`}
+                    data-game-id={id}
                     type="radio"
-                    value={game[0].Name}
+                    value={homeTeam.ID}
+                    checked={this.state.userPicks[id] === homeTeam.ID}
+                    onChange={this.handleInput}
                   />
                 </div>
                 <div className="team">
                   <div className="team-info">
                     <img
-                      src={`static/team-logos/${game[1].Abbreviation.toLowerCase()}.png`}
+                      src={`static/team-logos/${awayTeam.Abbreviation.toLowerCase()}.png`}
                     />
-                    <label>{game[1].Name}</label>
+                    <label>{awayTeam.Name}</label>
                   </div>
                   <input
-                    name={`match${game[0].ID}`}
+                    name={`match${id}`}
+                    data-game-id={id}
                     type="radio"
-                    value={game[1].Name}
+                    value={awayTeam.ID}
+                    checked={this.state.userPicks[id] === awayTeam.ID}
+                    onChange={this.handleInput}
                   />
                 </div>
               </div>
@@ -76,21 +100,25 @@ class GameForm extends React.Component {
         </form>
         <style jsx>
           {`
+          h2 {
+            text-align: center;
+            text-decoration: underline;
+            font-size: 2rem;
+          }
+
           form {
-            width: 600px;
+            width: 1000px;
             margin: 0 auto;
-            overflow: hidden;
             text-align: center;
           }
 
           section {
-            display: flex;
-            flex-flow: wrap;
-            justify-content: space-evenly;
+            margin-bottom: 40px;
           }
 
           .matchup {
-            margin: 60px 20px;
+            display: inline-block;
+            margin: 20px;
           }
 
           .team {
@@ -112,6 +140,12 @@ class GameForm extends React.Component {
 
           input[type="submit"] {
             margin: 0 auto;
+            font-size: 1.3rem;
+            padding: 15px 20px;
+            border: none;
+            background-color: #ccc;
+            border-radius: 3px;
+            cursor: pointer;
           }
 
           img {
@@ -127,3 +161,5 @@ class GameForm extends React.Component {
 }
 
 export default GameForm;
+
+// margin: 60px 20px;
