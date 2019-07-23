@@ -11958,6 +11958,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _styles_base_scss__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../styles/base.scss */ "./styles/base.scss");
+/* harmony import */ var _styles_base_scss__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_styles_base_scss__WEBPACK_IMPORTED_MODULE_12__);
 
 
 
@@ -11971,7 +11973,7 @@ var _jsxFileName = "/Users/austinjess/Deltav/401/labs/open-lab-next/pages/index.
 
 
 
-var dog = 'hello';
+
 var USERNAME = '4498f76b-695d-4832-a187-2a0f81';
 var PASSWORD = '*7P%Wo9%hwUl';
 var URL = 'https://api.mysportsfeeds.com/v1.0/pull/mlb/current/daily_game_schedule.json?fordate=20190718';
@@ -11995,8 +11997,7 @@ function (_React$Component) {
     _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__["default"])(this, (_getPrototypeOf2 = Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(Index)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6__["default"])(_this), "state", {
-      games: _this.props.games,
-      homeTeams: _this.props.home
+      games: _this.props.games
     });
 
     return _this;
@@ -12005,10 +12006,11 @@ function (_React$Component) {
   Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_3__["default"])(Index, [{
     key: "render",
     value: function render() {
+      console.log('GAMES', this.state.games);
       return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_9___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("form", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 37
+          lineNumber: 38
         },
         __self: this
       }, this.state.games.map(function (game, idx) {
@@ -12016,19 +12018,11 @@ function (_React$Component) {
           key: idx,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 39
-          },
-          __self: this
-        }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("label", {
-          __source: {
-            fileName: _jsxFileName,
             lineNumber: 40
           },
           __self: this
-        }, game[0].Name), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("input", {
-          name: "match",
-          type: "radio",
-          value: game[0].Name,
+        }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("img", {
+          src: "static/team-logos/".concat(game[0].Abbreviation.toLowerCase(), ".png"),
           __source: {
             fileName: _jsxFileName,
             lineNumber: 41
@@ -12037,7 +12031,29 @@ function (_React$Component) {
         }), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("label", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 42
+            lineNumber: 44
+          },
+          __self: this
+        }, game[0].Name), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("input", {
+          name: "match",
+          type: "radio",
+          value: game[0].Name,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 45
+          },
+          __self: this
+        }), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("img", {
+          src: "static/team-logos/".concat(game[1].Abbreviation.toLowerCase(), ".png"),
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 46
+          },
+          __self: this
+        }), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("label", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 49
           },
           __self: this
         }, game[1].Name), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("input", {
@@ -12046,7 +12062,7 @@ function (_React$Component) {
           value: game[1].Name,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 43
+            lineNumber: 50
           },
           __self: this
         }));
@@ -12054,7 +12070,7 @@ function (_React$Component) {
         type: "submit",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 46
+          lineNumber: 53
         },
         __self: this
       })));
@@ -12132,5 +12148,5 @@ module.exports = dll_829b10deddf10e1653a8;
 
 /***/ })
 
-},[[0,"static/runtime/webpack.js"]]]);
+},[[0,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=index.js.map
