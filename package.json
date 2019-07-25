@@ -21,19 +21,16 @@
   },
   "homepage": "https://github.com/401-advanced-javascript-austinjess/open-lab-next#readme",
   "dependencies": {
-    "@zeit/next-css": "^1.0.1",
-    "@zeit/next-sass": "^1.0.1",
     "axios": "^0.19.0",
     "babel-eslint": "^10.0.2",
+    "dotenv": "^8.0.0",
     "eslint": "^6.1.0",
     "eslint-plugin-jest": "^22.13.4",
-    "isomorphic-unfetch": "^3.0.0",
     "moment": "^2.24.0",
     "next": "^9.0.2",
-    "next-sass": "^1.0.3",
-    "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "superagent": "^5.1.0"
+    "superagent": "^5.1.0",
+    "webpack": "^4.37.0"
   }
 }

@@ -3,6 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 import moment from 'moment';
+import Results from './results';
 
 const date = moment().format('YYYYMMDD');
 
@@ -14,16 +15,20 @@ class GameForm extends React.Component {
   state = {
     games: this.props.games,
     userPicks: [],
+    isSubmitted: false,
+    teamNames: [],
   };
 
   handleSubmit = (e) => {
+    e.preventDefault();
     localStorage.setItem('userPicks', JSON.stringify(this.state.userPicks));
+    this.setState({ isSubmitted: true });
   };
 
   handleInput = (e) => {
     const {
       value: team,
-      dataset: { gameId },
+      dataset: { gameId, teamName },
     } = e.target;
 
     this.setState((state) => {
@@ -32,6 +37,7 @@ class GameForm extends React.Component {
           ...state.userPicks,
           [gameId]: team,
         },
+        teamNames: [...state.teamNames, teamName],
       };
     });
   };
@@ -50,11 +56,10 @@ class GameForm extends React.Component {
   }
 
   render() {
-    console.log(date);
     return (
       <>
-        <h2>Today's Games</h2>
-        <form action="/results" onSubmit={this.handleSubmit}>
+        <h6>Pick Your Winners</h6>
+        <form onSubmit={this.handleSubmit}>
           <section className="game-inputs">
             {this.state.games.map(({ id, homeTeam, awayTeam }, idx) => (
               <div className="matchup" key={idx}>
@@ -68,6 +73,7 @@ class GameForm extends React.Component {
                   <input
                     name={`match${id}`}
                     data-game-id={id}
+                    data-team-name={homeTeam.Name}
                     type="radio"
                     value={homeTeam.ID}
                     checked={this.state.userPicks[id] === homeTeam.ID}
@@ -84,6 +90,7 @@ class GameForm extends React.Component {
                   <input
                     name={`match${id}`}
                     data-game-id={id}
+                    data-team-name={awayTeam.Name}
                     type="radio"
                     value={awayTeam.ID}
                     checked={this.state.userPicks[id] === awayTeam.ID}
@@ -95,9 +102,10 @@ class GameForm extends React.Component {
           </section>
           <input type="submit" />
         </form>
+        {this.state.isSubmitted && <Results teamNames={this.state.teamNames} />}
         <style jsx>
           {`
-          h2 {
+          h2, h6 {
             text-align: center;
             text-decoration: underline;
             font-size: 2rem;
@@ -158,5 +166,3 @@ class GameForm extends React.Component {
 }
 
 export default GameForm;
-
-// margin: 60px 20px;
