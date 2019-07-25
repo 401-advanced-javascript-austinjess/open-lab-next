@@ -10,6 +10,7 @@ const PASSWORD = '*7P%Wo9%hwUl';
 class Results extends React.Component {
   state = {
     userPicks: [],
+    scoreboard: null,
   };
 
   async componentDidMount() {
@@ -20,39 +21,25 @@ class Results extends React.Component {
         password: PASSWORD,
       },
     });
-    // const gameScores = res.data.scoreboard.gameScore;
-    // const teamNames = gameScores.map((match) => {});
+
+    // const { scoreboard } = res;
 
     this.setState({
       userPicks,
+      // scoreboard,
     });
   }
 
-  // static async getInitialProps() {
-  //   const res = await axios.get(URL, {
-  //     auth: {
-  //       username: USERNAME,
-  //       password: PASSWORD,
-  //     },
-  //   });
-
-  //   return {
-  //     scoreboard: res.data,
-  //     }),
-  //   };
-  // }
-
   render() {
-    // console.log('SCOREBOARD!', this.state.scoreboard);
+    const { teamNames } = this.props;
     return (
       <>
         <section>
           <h2>Results</h2>
-          <p>Your Picks</p>
+          <p className="picks">Your Picks</p>
           <ul>
-            {Object.values(this.props.teamNames).map(pick => (
+            {teamNames.map(pick => (
               <li key={pick}>
-                {/* <img src={`static/team-logos/`} */}
                 <p>{pick}</p>
               </li>
             ))}
@@ -60,17 +47,28 @@ class Results extends React.Component {
         </section>
         <style jsx>
           {`
+            h2 {
+              font-size: 3rem;
+            }
+
+            .picks {
+            }
+
             section {
               margin-top: 50px;
               text-align: center;
               margin: 0 auto;
-              width: 400px;
             }
 
             ul {
               list-style: none;
-              margin: 0;
+              margin: 0 auto;
               padding: 0;
+              width: 300px;
+            }
+
+            p {
+              font-size: 1.5rem;
             }
           `}
         </style>
@@ -78,5 +76,38 @@ class Results extends React.Component {
     );
   }
 }
+
+// const teamsObj = {
+//   Diamondbacks: 'ari',
+//   Braves: 'atl',
+//   Orioles: 'bal',
+//   'Red Sox': 'bos',
+//   Cubs: 'chc',
+//   Reds: 'cin',
+//   Indians: 'cle',
+//   Rockies: 'col',
+//   'White Sox': 'cws',
+//   Tigers: 'det',
+//   Astros: 'hou',
+//   Royals: 'kc',
+//   Angels: 'laa',
+//   Dodgers: 'lad',
+//   Marlins: 'mia',
+//   Brewers: 'mil',
+//   Twins: 'min',
+//   Mets: 'nym',
+//   Yankees: 'nyy',
+//   Athletics: 'oak',
+//   Phillies: 'phi',
+//   Pirates: 'pit',
+//   Padres: 'sd',
+//   Mariners: 'sea',
+//   Giants: 'sf',
+//   Cardinals: 'stl',
+//   Rays: 'tb',
+//   Rangers: 'tex',
+//   'Blue Jays': 'tor',
+//   Nationals: 'was',
+// };
 
 export default Results;

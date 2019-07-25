@@ -49,7 +49,6 @@ class GameForm extends React.Component {
         password: PASSWORD,
       },
     });
-
     return {
       games: res.data.dailygameschedule.gameentry,
     };
@@ -83,6 +82,7 @@ class GameForm extends React.Component {
                         onChange={this.handleInput}
                       />
                     </div>
+                    <hr />
                     <div className="team">
                       <div className="team-info">
                         <img
@@ -115,10 +115,15 @@ class GameForm extends React.Component {
             font-size: 2rem;
           }
 
+          h4 {
+            margin-bottom: 10px;
+          }
+
           form {
-            width: 1000px;
+            width: 1200px;
             margin: 0 auto;
             text-align: center;
+            box-sizing: border-box;
           }
 
           section {
@@ -152,7 +157,7 @@ class GameForm extends React.Component {
           }
 
           input[type="submit"] {
-            margin: 20px auto;
+            margin: 40px auto;
             font-size: 1.3rem;
             padding: 15px 20px;
             border: none;
@@ -160,6 +165,16 @@ class GameForm extends React.Component {
             background-color: #3EDB61;
             border-radius: 3px;
             cursor: pointer;
+            border: 1px solid #3edb61;
+            font-weight: bold;
+            letter-spacing: 1.2;
+          }
+
+          input[type="submit"]:hover {
+            color: #3edb61;
+            background-color: white;
+            border: 1px solid #3edb61;
+
           }
 
           label {
