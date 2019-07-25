@@ -81,7 +81,6 @@ class GameForm extends React.Component {
                         value={homeTeam.ID}
                         checked={this.state.userPicks[id] === homeTeam.ID}
                         onChange={this.handleInput}
-                        style={checkedStyle}
                       />
                     </div>
                     <div className="team">
