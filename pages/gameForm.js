@@ -58,54 +58,59 @@ class GameForm extends React.Component {
   render() {
     return (
       <>
-        <h6>Pick Your Winners</h6>
-        <form onSubmit={this.handleSubmit}>
-          <section className="game-inputs">
-            {this.state.games.map(({ id, homeTeam, awayTeam }, idx) => (
-              <div className="matchup" key={idx}>
-                <div className="team">
-                  <div className="team-info">
-                    <img
-                      src={`static/team-logos/${homeTeam.Abbreviation.toLowerCase()}.png`}
-                    />
-                    <label>{homeTeam.Name}</label>
+        {!this.state.isSubmitted && (
+          <>
+            <h4>Pick Your Winners</h4>
+            <form onSubmit={this.handleSubmit}>
+              <input value="SUBMIT PICKS" type="submit" />
+              <section className="game-inputs">
+                {this.state.games.map(({ id, homeTeam, awayTeam }, idx) => (
+                  <div className="matchup" key={idx}>
+                    <div className="team">
+                      <div className="team-info">
+                        <img
+                          src={`static/team-logos/${homeTeam.Abbreviation.toLowerCase()}.png`}
+                        />
+                        <label>{homeTeam.Name}</label>
+                      </div>
+                      <input
+                        name={`match${id}`}
+                        data-game-id={id}
+                        data-team-name={homeTeam.Name}
+                        type="radio"
+                        value={homeTeam.ID}
+                        checked={this.state.userPicks[id] === homeTeam.ID}
+                        onChange={this.handleInput}
+                        style={checkedStyle}
+                      />
+                    </div>
+                    <div className="team">
+                      <div className="team-info">
+                        <img
+                          src={`static/team-logos/${awayTeam.Abbreviation.toLowerCase()}.png`}
+                        />
+                        <label>{awayTeam.Name}</label>
+                      </div>
+                      <input
+                        name={`match${id}`}
+                        data-game-id={id}
+                        data-team-name={awayTeam.Name}
+                        type="radio"
+                        value={awayTeam.ID}
+                        checked={this.state.userPicks[id] === awayTeam.ID}
+                        onChange={this.handleInput}
+                      />
+                    </div>
                   </div>
-                  <input
-                    name={`match${id}`}
-                    data-game-id={id}
-                    data-team-name={homeTeam.Name}
-                    type="radio"
-                    value={homeTeam.ID}
-                    checked={this.state.userPicks[id] === homeTeam.ID}
-                    onChange={this.handleInput}
-                  />
-                </div>
-                <div className="team">
-                  <div className="team-info">
-                    <img
-                      src={`static/team-logos/${awayTeam.Abbreviation.toLowerCase()}.png`}
-                    />
-                    <label>{awayTeam.Name}</label>
-                  </div>
-                  <input
-                    name={`match${id}`}
-                    data-game-id={id}
-                    data-team-name={awayTeam.Name}
-                    type="radio"
-                    value={awayTeam.ID}
-                    checked={this.state.userPicks[id] === awayTeam.ID}
-                    onChange={this.handleInput}
-                  />
-                </div>
-              </div>
-            ))}
-          </section>
-          <input type="submit" />
-        </form>
+                ))}
+              </section>
+            </form>
+          </>
+        )}
         {this.state.isSubmitted && <Results teamNames={this.state.teamNames} />}
         <style jsx>
           {`
-          h2, h6 {
+          h2, h4 {
             text-align: center;
             text-decoration: underline;
             font-size: 2rem;
@@ -124,6 +129,9 @@ class GameForm extends React.Component {
           .matchup {
             display: inline-block;
             margin: 20px;
+            background: #E7E7E7;
+            padding: 20px 30px;
+            border-radius: 5px;
           }
 
           .team {
@@ -136,6 +144,7 @@ class GameForm extends React.Component {
             display: flex;
             flex-direction: column;
             align-items: center;
+            width: 90px;
           }
 
           input[type="radio"] {
@@ -144,19 +153,28 @@ class GameForm extends React.Component {
           }
 
           input[type="submit"] {
-            margin: 0 auto;
+            margin: 20px auto;
             font-size: 1.3rem;
             padding: 15px 20px;
             border: none;
-            background-color: #ccc;
+            color: white;
+            background-color: #3EDB61;
             border-radius: 3px;
             cursor: pointer;
+          }
+
+          label {
+            font-size: 1.2rem;
           }
 
           img {
             width: 40px;
             margin: 10px 0;
             display: block;
+          }
+
+          .picked {
+            color: #3EDB61;
           }
         `}
         </style>

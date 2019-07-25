@@ -38,8 +38,6 @@ class Results extends React.Component {
 
   //   return {
   //     scoreboard: res.data,
-  //     teamsById: res.data.scoreboard.gameScore.map((match) => {
-  //       return match.game.homeTeam.ID;
   //     }),
   //   };
   // }
@@ -53,7 +51,10 @@ class Results extends React.Component {
           <p>Your Picks</p>
           <ul>
             {Object.values(this.props.teamNames).map(pick => (
-              <li key={pick}>{pick}</li>
+              <li key={pick}>
+                {/* <img src={`static/team-logos/`} */}
+                <p>{pick}</p>
+              </li>
             ))}
           </ul>
         </section>
@@ -68,6 +69,8 @@ class Results extends React.Component {
 
             ul {
               list-style: none;
+              margin: 0;
+              padding: 0;
             }
           `}
         </style>
