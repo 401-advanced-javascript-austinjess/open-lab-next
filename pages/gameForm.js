@@ -77,28 +77,17 @@ class GameForm extends React.Component {
                         onChange={this.handleInput}
                       />
                       <label htmlFor={homeTeam.ID}>
-                        <p>
-                          <em>Home</em>
-                        </p>
+                        <em className="loc">Home</em>
+
                         <img
                           src={`static/team-logos/${homeTeam.Abbreviation.toLowerCase()}.png`}
                         />
-                        <p>{homeTeam.Name}</p>
+                        {homeTeam.Name}
                       </label>
                     </section>
 
                     <hr />
                     <section className="selector">
-                      <label htmlFor={awayTeam.ID}>
-                        <p>
-                          <em>Away</em>
-                        </p>
-                        <img
-                          src={`static/team-logos/${awayTeam.Abbreviation.toLowerCase()}.png`}
-                        />
-                        <p>{awayTeam.Name}</p>
-                      </label>
-
                       <input
                         name={`match${id}`}
                         id={awayTeam.ID}
@@ -109,6 +98,13 @@ class GameForm extends React.Component {
                         checked={this.state.userPicks[id] === awayTeam.ID}
                         onChange={this.handleInput}
                       />
+                      <label htmlFor={awayTeam.ID}>
+                        <em className="loc">Away</em>
+                        <img
+                          src={`static/team-logos/${awayTeam.Abbreviation.toLowerCase()}.png`}
+                        />
+                        {awayTeam.Name}
+                      </label>
                     </section>
                   </div>
                 ))}
@@ -120,7 +116,7 @@ class GameForm extends React.Component {
         <style jsx>
           {`
             input[type='radio']:checked + label {
-              background-color: green;
+              background-color: #9dffa3;
             }
 
             input[type='radio'] {
@@ -130,6 +126,11 @@ class GameForm extends React.Component {
 
             label {
               cursor: pointer;
+            }
+
+            .loc {
+              margin-bottom: 10px;
+              font-size: 0.8rem;
             }
 
             .selector {
@@ -189,7 +190,7 @@ class GameForm extends React.Component {
 
             img {
               width: 40px;
-              margin: 0 auto;
+              margin: 10px auto;
               display: block;
             }
           `}
