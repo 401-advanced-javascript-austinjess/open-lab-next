@@ -65,15 +65,10 @@ class GameForm extends React.Component {
               <section className="game-inputs">
                 {this.state.games.map(({ id, homeTeam, awayTeam }, idx) => (
                   <div className="matchup" key={idx}>
-                    <div className="team">
-                      <div className="team-info">
-                        <img
-                          src={`static/team-logos/${homeTeam.Abbreviation.toLowerCase()}.png`}
-                        />
-                        <label>{homeTeam.Name}</label>
-                      </div>
+                    <section className="selector">
                       <input
                         name={`match${id}`}
+                        id={homeTeam.ID}
                         data-game-id={id}
                         data-team-name={homeTeam.Name}
                         type="radio"
@@ -81,17 +76,32 @@ class GameForm extends React.Component {
                         checked={this.state.userPicks[id] === homeTeam.ID}
                         onChange={this.handleInput}
                       />
-                    </div>
+                      <label htmlFor={homeTeam.ID}>
+                        <p>
+                          <em>Home</em>
+                        </p>
+                        <img
+                          src={`static/team-logos/${homeTeam.Abbreviation.toLowerCase()}.png`}
+                        />
+                        <p>{homeTeam.Name}</p>
+                      </label>
+                    </section>
+
                     <hr />
-                    <div className="team">
-                      <div className="team-info">
+                    <section className="selector">
+                      <label htmlFor={awayTeam.ID}>
+                        <p>
+                          <em>Away</em>
+                        </p>
                         <img
                           src={`static/team-logos/${awayTeam.Abbreviation.toLowerCase()}.png`}
                         />
-                        <label>{awayTeam.Name}</label>
-                      </div>
+                        <p>{awayTeam.Name}</p>
+                      </label>
+
                       <input
                         name={`match${id}`}
+                        id={awayTeam.ID}
                         data-game-id={id}
                         data-team-name={awayTeam.Name}
                         type="radio"
@@ -99,7 +109,7 @@ class GameForm extends React.Component {
                         checked={this.state.userPicks[id] === awayTeam.ID}
                         onChange={this.handleInput}
                       />
-                    </div>
+                    </section>
                   </div>
                 ))}
               </section>
@@ -109,88 +119,80 @@ class GameForm extends React.Component {
         {this.state.isSubmitted && <Results teamNames={this.state.teamNames} />}
         <style jsx>
           {`
-          h2, h4 {
-            text-align: center;
-            text-decoration: underline;
-            font-size: 2rem;
-          }
+            input[type='radio']:checked + label {
+              background-color: green;
+            }
 
-          h4 {
-            margin-bottom: 10px;
-          }
+            input[type='radio'] {
+              position: absolute;
+              opacity: 0;
+            }
 
-          form {
-            width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-            box-sizing: border-box;
-          }
+            label {
+              cursor: pointer;
+            }
 
-          section {
-            margin-bottom: 40px;
-          }
+            .selector {
+              width: 100px;
+              margin: 0;
+            }
 
-          .matchup {
-            display: inline-block;
-            margin: 20px;
-            background: #E7E7E7;
-            padding: 20px 30px;
-            border-radius: 5px;
-          }
+            h2,
+            h4 {
+              text-align: center;
+              text-decoration: underline;
+              font-size: 2rem;
+            }
 
-          .team {
-            display flex;
-            align-items: center;
-            width: 100%;
-          }
+            h4 {
+              margin-bottom: 10px;
+            }
 
-          .team-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 90px;
-          }
+            form {
+              width: 1200px;
+              margin: 0 auto;
+              text-align: center;
+              box-sizing: border-box;
+            }
 
-          input[type="radio"] {
-            float: right;
-            clear: both;
-          }
+            section {
+              margin-bottom: 40px;
+            }
 
-          input[type="submit"] {
-            margin: 40px auto;
-            font-size: 1.3rem;
-            padding: 15px 20px;
-            border: none;
-            color: white;
-            background-color: #3EDB61;
-            border-radius: 3px;
-            cursor: pointer;
-            border: 1px solid #3edb61;
-            font-weight: bold;
-            letter-spacing: 1.2;
-          }
+            .matchup {
+              display: inline-block;
+              margin: 20px;
+              background: #e7e7e7;
+              padding: 20px 30px;
+              border-radius: 5px;
+            }
 
-          input[type="submit"]:hover {
-            color: #3edb61;
-            background-color: white;
-            border: 1px solid #3edb61;
+            input[type='submit'] {
+              margin: 40px auto;
+              font-size: 1.3rem;
+              padding: 15px 20px;
+              border: none;
+              color: white;
+              background-color: #3edb61;
+              border-radius: 3px;
+              cursor: pointer;
+              border: 1px solid #3edb61;
+              font-weight: bold;
+              letter-spacing: 1.2;
+            }
 
-          }
+            input[type='submit']:hover {
+              color: #3edb61;
+              background-color: white;
+              border: 1px solid #3edb61;
+            }
 
-          label {
-            font-size: 1.2rem;
-          }
-
-          img {
-            width: 40px;
-            margin: 10px 0;
-            display: block;
-          }
-
-          .picked {
-            color: #3EDB61;
-          }
-        `}
+            img {
+              width: 40px;
+              margin: 0 auto;
+              display: block;
+            }
+          `}
         </style>
       </>
     );

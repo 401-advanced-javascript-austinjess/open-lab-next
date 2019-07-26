@@ -6,6 +6,7 @@ const Index = () => {
     <>
       <main>
         <h1>MLB Daily Pick&#39;Em</h1>
+        <img src="static/Mookie.png" />
         <Link href="/gameForm">
           <a>MAKE YOUR PICKS</a>
         </Link>
@@ -14,7 +15,11 @@ const Index = () => {
         {`
           main {
             text-align: center;
-            margin-top: 20%;
+            margin-top: 10%;
+          }
+
+          img {
+            width: 300px;
           }
 
           body {
@@ -36,7 +41,7 @@ const Index = () => {
             box-sizing: border-box;
             display: block;
             width: 240px;
-            margin: 60px auto;
+            margin: 20px auto;
           }
 
           a:hover {

@@ -52,6 +52,8 @@ class Results extends React.Component {
             }
 
             .picks {
+              text-decoration: underline;
+              font-weight: bold;
             }
 
             section {
